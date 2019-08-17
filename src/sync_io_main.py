@@ -2,6 +2,7 @@
 """
 import time
 from datetime import datetime
+import asyncio
 
 
 def very_long_routine(index):
@@ -10,7 +11,7 @@ def very_long_routine(index):
     print(f"    end:   {index}")
 
 
-def main():
+async def main():
     program_start_time = datetime.utcnow()
     print(f"started at {program_start_time}")
     for i in range(1, 6):
@@ -23,4 +24,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
