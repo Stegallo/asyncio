@@ -1,7 +1,9 @@
 """
+    still syncronous as before, but this time using asyncio
 """
 import time
 from datetime import datetime
+import asyncio
 
 
 def very_long_routine(index):
@@ -10,7 +12,8 @@ def very_long_routine(index):
     print(f"    end:   {index}")
 
 
-def main():
+# since main is invoked by asyncio.run(), it has to be an async function
+async def main():
     program_start_time = datetime.utcnow()
     print(f"started at {program_start_time}")
     for i in range(1, 6):
@@ -23,4 +26,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # replace simple invocation with asyncio.run() invocation
+    asyncio.run(main())
