@@ -1,7 +1,6 @@
 """
     using asyncio and await, but still syncronous as using a blocking function
 """
-import time
 from datetime import datetime
 import asyncio
 
@@ -9,7 +8,8 @@ import asyncio
 async def very_long_routine(index):
     print(f"    start: {index}")
     # note that time.sleep() is a blocking function. Prevents await from working
-    time.sleep(5)
+    # replacing time.sleep() with non blocking asyncio.sleep()
+    await asyncio.sleep(5)
     print(f"    end:   {index}")
 
 
