@@ -17,11 +17,12 @@ async def very_long_routine(index):
 async def main():
     program_start_time = datetime.utcnow()
     print(f"started at {program_start_time}")
-    for i in range(1, 6):
-        print(f"    iteration {i} started at {datetime.utcnow()}")
-        # invokes very_long_routine in asyncronous mode
-        await very_long_routine(i)
-        print(f"    iteration {i} ended   at {datetime.utcnow()}")
+
+    # changing the invocation loop to list comprehension inside the gather method.
+    await asyncio.gather(*(very_long_routine(i) for i in range(1, 6)))
+    # note that now all the fuctions are starting at the same time.
+    # note also that the logic is now slightly different, as I had to remove prints around function calls.
+
     program_end_time = datetime.utcnow()
     print(f"ended   at {program_end_time}")
     print(f"total duration: {(program_end_time - program_start_time).total_seconds()}")
