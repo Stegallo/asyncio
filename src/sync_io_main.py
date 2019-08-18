@@ -7,7 +7,7 @@ import asyncio
 
 async def very_long_routine(index):
     print(f"    start: {index}")
-    time.sleep(5)
+    asyncio.sleep(5)
     print(f"    end:   {index}")
 
 
